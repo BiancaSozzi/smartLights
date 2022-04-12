@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SmartLights</string>
+    <string name="tab_rooms_list">Rooms</string>
+    <string name="tab_home_map">Map</string>
+</resources>
