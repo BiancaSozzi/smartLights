@@ -4,7 +4,7 @@ import android.os.Bundle
 import com.google.android.material.tabs.TabLayout
 import androidx.viewpager.widget.ViewPager
 import androidx.appcompat.app.AppCompatActivity
-import com.project.smartlights.ui.main.SectionsPagerAdapter
+import com.project.smartlights.adapters.SectionsPagerAdapter
 import com.project.smartlights.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

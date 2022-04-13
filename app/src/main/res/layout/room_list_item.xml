@@ -17,8 +17,10 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <ImageView
+        android:id="@+id/ligh_bulb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:contentDescription="light bulb icon"
         android:src="@drawable/light_bulb_off"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>

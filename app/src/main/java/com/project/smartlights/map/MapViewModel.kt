@@ -1,4 +1,4 @@
-package com.project.smartlights.ui.main
+package com.project.smartlights.map
 
 import androidx.lifecycle.ViewModel
 
