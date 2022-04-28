@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 
 class RecyclerViewSwipeEventHandler(
-    viewModel: ViewModel,
+    viewModel: RoomsViewModel,
     recyclerView: RecyclerView
 ) {
     internal var onSwipeCallback: ItemTouchHelper.SimpleCallback =
@@ -18,7 +18,7 @@ class RecyclerViewSwipeEventHandler(
                val position = viewHolder.adapterPosition
                when(direction) {
                    ItemTouchHelper.RIGHT -> {
-                       val deletedRoom = (viewModel as RoomsViewModel).rooms.value?.get(position)
+                       val deletedRoom = (viewModel).rooms.value?.get(position)
                        viewModel.rooms.value?.remove(deletedRoom)
                        recyclerView.adapter?.notifyItemRemoved(position)
                        Snackbar.make(recyclerView, "${deletedRoom?.name} was deleted", Snackbar.LENGTH_LONG).setAction(
