@@ -8,9 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.snackbar.Snackbar
+import com.project.smartlights.SmartLightsApplication
 import com.project.smartlights.adapters.RoomsListAdapter
-import com.project.smartlights.data.Room
 import com.project.smartlights.databinding.RoomsFragmentBinding
 
 class RoomsFragment : Fragment() {
@@ -25,7 +24,9 @@ class RoomsFragment : Fragment() {
     // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
 
-    private val viewModel: RoomsViewModel by activityViewModels()
+    private val viewModel: RoomsViewModel by activityViewModels {
+        RoomsViewModelFactory((this.activity?.application as SmartLightsApplication).repository)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,6 +51,4 @@ class RoomsFragment : Fragment() {
             RecyclerViewSwipeEventHandler(viewModel, roomsRecyclerView).onSwipeCallback)
             .attachToRecyclerView(roomsRecyclerView)
     }
-
-
 }

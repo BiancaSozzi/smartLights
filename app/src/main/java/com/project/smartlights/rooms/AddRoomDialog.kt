@@ -3,17 +3,15 @@ package com.project.smartlights.rooms
 import android.annotation.SuppressLint
 import android.app.Dialog
 import android.os.Bundle
-import android.util.Log
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDialogFragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.input.getInputField
 import com.afollestad.materialdialogs.input.input
 import com.project.smartlights.R
-import com.project.smartlights.data.Room
+import com.project.smartlights.data.HouseRoom
+import kotlinx.coroutines.runBlocking
+import java.util.*
 
 class AddRoomDialog: AppCompatDialogFragment() {
 
@@ -28,7 +26,13 @@ class AddRoomDialog: AppCompatDialogFragment() {
                 waitForPositiveButton = false
             )
             positiveButton(android.R.string.ok) {dialog ->
-                viewModel.addRoom(dialog.getInputField().text.toString())
+                val room = HouseRoom(
+                    UUID.randomUUID().toString(),
+                    dialog.getInputField().text.toString()
+                )
+                runBlocking {
+                    viewModel.addRoom(room)
+                }
             }
             negativeButton(android.R.string.cancel)
         }

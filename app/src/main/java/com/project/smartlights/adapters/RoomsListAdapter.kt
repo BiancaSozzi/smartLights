@@ -7,9 +7,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.project.smartlights.R
-import com.project.smartlights.data.Room
+import com.project.smartlights.data.HouseRoom
 
-class RoomsListAdapter(private val mList: List<Room>): RecyclerView.Adapter<RoomsListAdapter.ViewHolder> () {
+class RoomsListAdapter(private val mList: List<HouseRoom>): RecyclerView.Adapter<RoomsListAdapter.ViewHolder> () {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.room_list_item, parent, false)
