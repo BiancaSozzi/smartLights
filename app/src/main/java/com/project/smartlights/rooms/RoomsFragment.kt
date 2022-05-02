@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import com.project.smartlights.SmartLightsApplication
 import com.project.smartlights.adapters.RoomsListAdapter
 import com.project.smartlights.databinding.RoomsFragmentBinding
@@ -39,12 +40,19 @@ class RoomsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         binding.addNewRoom.setOnClickListener {
             AddRoomDialog().show(parentFragmentManager, null)
         }
 
         viewModel.rooms.observe(viewLifecycleOwner) { rooms ->
             roomsRecyclerView.adapter = RoomsListAdapter(rooms)
+        }
+
+        viewModel.addRoomSucceed.observe(viewLifecycleOwner) {
+            if (!it) {
+                Snackbar.make(view, "A room with that name already exists", Snackbar.LENGTH_LONG).show()
+            }
         }
 
         ItemTouchHelper(
