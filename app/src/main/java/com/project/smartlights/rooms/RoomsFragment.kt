@@ -45,8 +45,12 @@ class RoomsFragment : Fragment() {
             AddRoomDialog().show(parentFragmentManager, null)
         }
 
-        viewModel.rooms.observe(viewLifecycleOwner) { rooms ->
+        viewModel.roomsWithLights.observe(viewLifecycleOwner) { rooms ->
             roomsRecyclerView.adapter = RoomsListAdapter(rooms)
+        }
+
+        viewModel.allLights.observe(viewLifecycleOwner) {
+            it
         }
 
         viewModel.addRoomSucceed.observe(viewLifecycleOwner) {

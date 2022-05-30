@@ -1,8 +1,10 @@
 package com.project.smartlights.rooms
 
+import android.app.Application
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
+import com.project.smartlights.data.HouseRoomsDao
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.runBlocking
@@ -20,18 +22,18 @@ class RecyclerViewSwipeEventHandler(
                 val position = viewHolder.adapterPosition
                 when(direction) {
                     ItemTouchHelper.RIGHT -> {
-                        val deletedRoom = (viewModel).rooms.value?.get(position)
+                        val deletedRoom = (viewModel).roomsWithLights.value?.get(position)
                         runBlocking {
                             awaitAll (async {
-                                viewModel.deleteRoom(deletedRoom!!)
+                                viewModel.deleteRoom(deletedRoom!!.houseRoom)
                             })
                             recyclerView.adapter?.notifyItemRemoved(position)
-                            Snackbar.make(recyclerView, "${deletedRoom?.name} was deleted", Snackbar.LENGTH_LONG).setAction(
+                            Snackbar.make(recyclerView, "${deletedRoom!!.houseRoom.name} was deleted", Snackbar.LENGTH_LONG).setAction(
                                 "Undo"
                             ) {
                                 runBlocking {
                                     awaitAll(async {
-                                        viewModel.addRoom(deletedRoom!!)
+                                        viewModel.addRoom(deletedRoom.houseRoom)
                                     })
                                     recyclerView.adapter?.notifyItemInserted(position)
                                 }

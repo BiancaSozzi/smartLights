@@ -7,5 +7,5 @@ import androidx.room.PrimaryKey
 data class HouseRoom (
     @PrimaryKey val uid: String,
     var name: String,
-    var lightOn: Boolean = false
+    var allLightsOn: Boolean = false
 )

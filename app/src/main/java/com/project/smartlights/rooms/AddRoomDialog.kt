@@ -21,7 +21,7 @@ class AddRoomDialog: AppCompatDialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return MaterialDialog(requireContext()).show {
             title(R.string.add_room_title)
-            input(
+            input (
                 hint = "Room name",
                 waitForPositiveButton = false
             )
